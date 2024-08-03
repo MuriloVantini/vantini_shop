@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:vantini_shop/src/screens/auth/login.dart';
 
-import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
@@ -18,14 +17,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Glue the SettingsController to the MaterialApp.
-    //
-    // The ListenableBuilder Widget listens to the SettingsController for changes.
-    // Whenever the user updates their settings, the MaterialApp is rebuilt.
+    const Color lightPrimary = Color.fromRGBO(0, 255, 117, 1);
+    const Color darkPrimary = Color.fromRGBO(25, 191, 103, 1);
     return ListenableBuilder(
       listenable: settingsController,
       builder: (BuildContext context, Widget? child) {
         return MaterialApp(
+          debugShowMaterialGrid: false,
+          debugShowCheckedModeBanner: false,
           // Providing a restorationScopeId allows the Navigator built by the
           // MaterialApp to restore the navigation stack when a user leaves and
           // returns to the app after it has been killed while running in the
@@ -42,7 +41,7 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('en', ''), // English, no country code
+            Locale('en', 'pt-br'),
           ],
 
           // Use AppLocalizations to configure the correct application title
@@ -50,18 +49,89 @@ class MyApp extends StatelessWidget {
           //
           // The appTitle is defined in .arb files found in the localization
           // directory.
-          onGenerateTitle: (BuildContext context) =>
-              AppLocalizations.of(context)!.appTitle,
+          onGenerateTitle: (BuildContext context) => AppLocalizations.of(context)!.appTitle,
 
-          // Define a light and dark color theme. Then, read the user's
-          // preferred ThemeMode (light, dark, or system default) from the
-          // SettingsController to display the correct theme.
-          theme: ThemeData(),
-          darkTheme: ThemeData.dark(),
+          //LightTheme quando o tema do dispotivo é claro
+          theme: ThemeData(
+            textButtonTheme: TextButtonThemeData(
+              style: ButtonStyle(
+                iconColor: const WidgetStatePropertyAll(lightPrimary),
+                backgroundColor: WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.selected) ? darkPrimary : darkPrimary.withOpacity(0.1)),
+                shadowColor: WidgetStatePropertyAll(darkPrimary.withGreen(255)),
+                animationDuration: const Duration(milliseconds: 500),
+                textStyle: const WidgetStatePropertyAll(TextStyle(color: lightPrimary, fontSize: 16, decoration: TextDecoration.none)),
+              ),
+            ),
+            textTheme: const TextTheme(
+              titleLarge: TextStyle(color: Colors.black, fontSize: 36, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
+            ),
+            primaryColor: lightPrimary,
+            scaffoldBackgroundColor: Colors.white,
+            colorScheme: const ColorScheme(
+              brightness: Brightness.light,
+              primary: lightPrimary,
+              onPrimary: Colors.white,
+              secondary: Color.fromRGBO(13, 13, 14, 1),
+              onSecondary: Colors.white,
+              error: Colors.red,
+              onError: Colors.white,
+              surface: Colors.white,
+              onSurface: Colors.black,
+            ),
+            inputDecorationTheme: InputDecorationTheme(
+              prefixIconColor: lightPrimary.withGreen(150),
+              hintFadeDuration: const Duration(milliseconds: 300),
+              labelStyle: const TextStyle(color: Colors.black),
+              hintStyle: TextStyle(color: Colors.grey[300]!),
+              enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: lightPrimary, width: 1), borderRadius: BorderRadius.circular(12)),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: lightPrimary, width: 10)),
+              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.red, width: 10)),
+              focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.red, width: 10)),
+              disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey[300]!)),
+            ),
+          ),
+
+          //DarkTheme quando o tema do dispotivo é escuro
+          darkTheme: ThemeData(
+            textButtonTheme: TextButtonThemeData(
+              style: ButtonStyle(
+                iconColor: const WidgetStatePropertyAll(darkPrimary),
+                backgroundColor: WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.selected) ? darkPrimary : darkPrimary.withOpacity(0.1)),
+                shadowColor: WidgetStatePropertyAll(darkPrimary.withGreen(255)),
+                animationDuration: const Duration(milliseconds: 500),
+                textStyle: const WidgetStatePropertyAll(TextStyle(color: Colors.white, fontSize: 16, decoration: TextDecoration.none)),
+              ),
+            ),
+            textTheme: const TextTheme(
+              titleLarge: TextStyle(color: Colors.white, fontSize: 36, fontWeight: FontWeight.normal, decoration: TextDecoration.none),
+            ),
+            primaryColor: darkPrimary,
+            scaffoldBackgroundColor: const Color.fromARGB(255, 20, 20, 20),
+            colorScheme: const ColorScheme(
+              brightness: Brightness.dark,
+              primary: darkPrimary,
+              onPrimary: Colors.white,
+              secondary: Color.fromRGBO(85, 85, 90, 1),
+              onSecondary: Colors.white,
+              error: Colors.red,
+              onError: Colors.white,
+              surface: Color.fromARGB(255, 20, 20, 20),
+              onSurface: Color.fromARGB(255, 225, 219, 219),
+            ),
+            inputDecorationTheme: InputDecorationTheme(
+              prefixIconColor: darkPrimary.withGreen(96),
+              hintFadeDuration: const Duration(milliseconds: 300),
+              labelStyle: const TextStyle(color: Colors.white),
+              hintStyle: TextStyle(color: Colors.grey[300]!),
+              enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: darkPrimary, width: 1), borderRadius: BorderRadius.circular(12)),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: darkPrimary, width: 10)),
+              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.red, width: 10)),
+              focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.red, width: 10)),
+              disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey[300]!)),
+            ),
+          ),
           themeMode: settingsController.themeMode,
 
-          // Define a function to handle named routes in order to support
-          // Flutter web url navigation and deep linking.
           onGenerateRoute: (RouteSettings routeSettings) {
             return MaterialPageRoute<void>(
               settings: routeSettings,
@@ -69,11 +139,8 @@ class MyApp extends StatelessWidget {
                 switch (routeSettings.name) {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
-                  case SampleItemDetailsView.routeName:
-                    return const SampleItemDetailsView();
-                  case SampleItemListView.routeName:
                   default:
-                    return const SampleItemListView();
+                    return const LoginPage();
                 }
               },
             );
