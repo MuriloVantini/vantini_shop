@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const Color lightPrimary = Color.fromRGBO(0, 255, 117, 1);
+    const Color lightPrimary = Color.fromRGBO(255, 122, 0, 1);
     const Color darkPrimary = Color.fromRGBO(25, 191, 103, 1);
     return ListenableBuilder(
       listenable: settingsController,
@@ -59,11 +59,11 @@ class MyApp extends StatelessWidget {
                 minimumSize: const WidgetStatePropertyAll(Size(150, 40)),
                 fixedSize: WidgetStatePropertyAll(Size(MediaQuery.of(context).size.width, 40)),
                 iconColor: const WidgetStatePropertyAll(lightPrimary),
-                backgroundColor: WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.selected) ? darkPrimary : lightPrimary.withOpacity(0.08)),
+                backgroundColor: const WidgetStatePropertyAll(lightPrimary),
                 shadowColor: WidgetStatePropertyAll(darkPrimary.withGreen(255)),
                 animationDuration: const Duration(milliseconds: 500),
                 shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                foregroundColor: const WidgetStatePropertyAll(lightPrimary),
+                foregroundColor: const WidgetStatePropertyAll(Colors.white),
                 textStyle: const WidgetStatePropertyAll(TextStyle(fontSize: 16, decoration: TextDecoration.none)),
               ),
             ),
@@ -106,10 +106,10 @@ class MyApp extends StatelessWidget {
                 fixedSize: WidgetStatePropertyAll(Size(MediaQuery.of(context).size.width, 40)),
                 iconColor: const WidgetStatePropertyAll(darkPrimary),
                 shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(12))),
-                backgroundColor: WidgetStateProperty.resolveWith((states) => states.contains(WidgetState.selected) ? darkPrimary : darkPrimary.withOpacity(0.15)),
+                backgroundColor: const WidgetStatePropertyAll(darkPrimary),
                 shadowColor: WidgetStatePropertyAll(darkPrimary.withGreen(255)),
                 animationDuration: const Duration(milliseconds: 500),
-                foregroundColor: const WidgetStatePropertyAll(lightPrimary),
+                foregroundColor: const WidgetStatePropertyAll(Colors.white),
                 textStyle: const WidgetStatePropertyAll(TextStyle(fontSize: 16, decoration: TextDecoration.none)),
               ),
             ),
@@ -136,9 +136,9 @@ class MyApp extends StatelessWidget {
               labelStyle: const TextStyle(color: Colors.white),
               hintStyle: TextStyle(color: Colors.grey[300]!),
               enabledBorder: OutlineInputBorder(borderSide: const BorderSide(color: darkPrimary, width: 1), borderRadius: BorderRadius.circular(12)),
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: darkPrimary, width: 10)),
-              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.red, width: 10)),
-              focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.red, width: 10)),
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: darkPrimary, width: 1)),
+              errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.red, width: 1)),
+              focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: const BorderSide(color: Colors.red, width: 2)),
               disabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(12), borderSide: BorderSide(color: Colors.grey[300]!)),
             ),
           ),
