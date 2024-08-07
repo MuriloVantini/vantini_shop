@@ -86,6 +86,7 @@ class MyApp extends StatelessWidget {
               shadow: Color.fromARGB(255, 197, 197, 196)
             ),
             inputDecorationTheme: InputDecorationTheme(
+              errorMaxLines: 2,
               prefixIconColor: lightPrimary.withGreen(150),
               hintFadeDuration: const Duration(milliseconds: 300),
               labelStyle: const TextStyle(color: Colors.black),
@@ -133,6 +134,7 @@ class MyApp extends StatelessWidget {
               shadow: Color.fromARGB(255, 83, 82, 80)
             ),
             inputDecorationTheme: InputDecorationTheme(
+              errorMaxLines: 2,
               prefixIconColor: darkPrimary.withGreen(96),
               hintFadeDuration: const Duration(milliseconds: 300),
               labelStyle: const TextStyle(color: Colors.white),
