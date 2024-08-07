@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const Color lightPrimary = Color.fromRGBO(255, 122, 0, 1);
-    const Color darkPrimary = Color.fromRGBO(25, 191, 103, 1);
+    const Color darkPrimary = Color.fromRGBO(214, 105, 2, 1);
     return ListenableBuilder(
       listenable: settingsController,
       builder: (BuildContext context, Widget? child) {
@@ -131,7 +131,7 @@ class MyApp extends StatelessWidget {
                 onError: Colors.white,
                 surface: Color.fromARGB(255, 20, 20, 20),
                 onSurface: Color.fromARGB(255, 225, 219, 219),
-                shadow: Color.fromARGB(255, 83, 82, 80)),
+                shadow: Color.fromARGB(255, 92, 91, 90)),
             inputDecorationTheme: InputDecorationTheme(
               errorMaxLines: 2,
               prefixIconColor: darkPrimary.withGreen(96),
