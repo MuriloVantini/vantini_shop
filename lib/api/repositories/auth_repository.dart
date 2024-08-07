@@ -31,8 +31,8 @@ class AuthRepository implements IAuthRepository {
             throw 'Falha ao fazer login, tente novamente mais tarde.';
         }
       }
-    } on Exception catch (e) {
-      throw Exception('login falhou: $e');
+    } catch (e) {
+      rethrow;
     }
   }
 }
