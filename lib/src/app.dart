@@ -152,7 +152,7 @@ class MyApp extends StatelessWidget {
                   case SettingsView.routeName:
                     return SettingsView(controller: settingsController);
                   default:
-                    return const LoginPage();
+                    return LoginPage(controller: settingsController);
                 }
               },
             );
