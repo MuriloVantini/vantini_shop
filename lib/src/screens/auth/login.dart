@@ -4,7 +4,7 @@ import 'package:vantini_shop/api/repositories/auth_repository.dart';
 import 'package:vantini_shop/api/repositories/user_repository.dart';
 import 'package:vantini_shop/api/stores/auth_store.dart';
 import 'package:vantini_shop/api/stores/user_store.dart';
-import 'package:vantini_shop/src/screens/home_page.dart';
+import 'package:vantini_shop/src/components/bottom_navbar.dart';
 import 'package:vantini_shop/src/settings/settings_view.dart';
 
 class LoginPage extends StatefulWidget {
@@ -12,7 +12,6 @@ class LoginPage extends StatefulWidget {
 
   @override
   State<LoginPage> createState() => _LoginPageState();
-  static const routeName = '/login';
 }
 
 class _LoginPageState extends State<LoginPage> {
@@ -137,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                                 if (authStore.stateToLogin.value.isNotEmpty) {
                                   await userStore.showUser(authStore.stateToLogin.value).whenComplete(() {
                                     if (userStore.state.value != null) {
-                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(user: userStore.state.value!)));
+                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyBottomNavbar(user: userStore.state.value!)));
                                     }
                                   });
                                 }
