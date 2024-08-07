@@ -7,9 +7,10 @@ import 'package:vantini_shop/src/settings/settings_controller.dart';
 import 'package:vantini_shop/src/settings/settings_view.dart';
 
 class MyBottomNavbar extends StatefulWidget {
+  final String token;
   final UserModel user;
   final SettingsController controller;
-  const MyBottomNavbar({super.key, required this.user, required this.controller});
+  const MyBottomNavbar({super.key, required this.user, required this.controller, required this.token});
 
   @override
   State<MyBottomNavbar> createState() => _MyBottomNavbarState();
@@ -21,9 +22,9 @@ class _MyBottomNavbarState extends State<MyBottomNavbar> {
   @override
   void initState() {
     pages = [
-      HomePage(user: widget.user),
-      HomePage(user: widget.user),
-      HomePage(user: widget.user),
+      HomePage(user: widget.user, token: widget.token,),
+      HomePage(user: widget.user, token: widget.token,),
+      HomePage(user: widget.user, token: widget.token,),
       SettingsView(controller: widget.controller),
     ];
     super.initState();

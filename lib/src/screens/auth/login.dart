@@ -138,7 +138,14 @@ class _LoginPageState extends State<LoginPage> {
                                 if (authStore.stateToLogin.value.isNotEmpty) {
                                   await userStore.showUser(authStore.stateToLogin.value).whenComplete(() {
                                     if (userStore.state.value != null) {
-                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyBottomNavbar(user: userStore.state.value!, controller: widget.controller)));
+                                      Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => MyBottomNavbar(
+                                                    user: userStore.state.value!,
+                                                    controller: widget.controller,
+                                                    token: authStore.stateToLogin.value,
+                                                  )));
                                     }
                                   });
                                 }
