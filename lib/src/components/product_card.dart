@@ -97,9 +97,14 @@ class _ProductCardState extends State<ProductCard> {
             ),
             if (imageOffset != null)
               Positioned(
-                bottom: imageOffset!.dy + 60,
-                right: imageOffset!.dx - 75,
-                child: IconButton.filled(onPressed: () {}, icon: const Icon(LucideIcons.shoppingCart)),
+                bottom: imageOffset!.dy + 75,
+                right: imageOffset!.dx - 80,
+                child: IconButton.filled(
+                  onPressed: () {},
+                  icon: const Icon(LucideIcons.shoppingCart, size: 16),
+                  tooltip: 'Adicionar ao carrinho',
+                  style: IconButton.styleFrom(elevation: 3, shadowColor: Theme.of(context).colorScheme.shadow),
+                ),
               )
           ],
         ),
