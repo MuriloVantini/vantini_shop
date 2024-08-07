@@ -19,9 +19,15 @@ class ProductRepository implements IProductRepository {
         List<ProductModel> products = [];
 
         final body = jsonDecode(response.body);
-        body.map((product) {
-          products.add(ProductModel.fromMap(product as Map<String, dynamic>));
-        }).toList();
+        if (hasPagination) {
+          body['data'].map((product) {
+            products.add(ProductModel.fromMap(product as Map<String, dynamic>));
+          }).toList();
+        } else {
+          body.map((product) {
+            products.add(ProductModel.fromMap(product as Map<String, dynamic>));
+          }).toList();
+        }
         return products;
       } else {
         throw 'Error fetching products: ${response.statusCode}';

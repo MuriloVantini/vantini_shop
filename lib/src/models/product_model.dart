@@ -56,6 +56,10 @@ class ProductModel {
   }
 
   factory ProductModel.fromMap(Map<String, dynamic> map) {
+    List<String> images = [];
+    map['images'].map((e) {
+      images.add(e as String);
+    }).toList();
     return ProductModel(
       id: map['id'] as int,
       name: map['name'] as String,
@@ -63,7 +67,7 @@ class ProductModel {
       price: map['price'] as double,
       createdAt: map['created_at'] as String,
       updatedAt: map['updated_at'] as String,
-      images: List<String>.from((map['images'] as List<String>)),
+      images: images,
       rating: map['rating'].toDouble(),
     );
   }
