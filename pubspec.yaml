@@ -16,6 +16,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   http: ^1.2.2
+  intl: ^0.19.0
   lucide_icons_flutter: ^1.1.4
   salomon_bottom_bar: ^3.3.2
   shared_preferences: ^2.3.1
