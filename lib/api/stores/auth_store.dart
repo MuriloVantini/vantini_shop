@@ -18,10 +18,8 @@ class AuthStore {
         stateToLogin.value = result;
       }
     } on NotFoundException catch (e) {
-      print(e.message);
       erro.value = e.message;
     } catch (e) {
-      print(e);
       erro.value = e.toString();
     } finally {
       isLoading.value = false;
