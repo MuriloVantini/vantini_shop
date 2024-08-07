@@ -11,7 +11,7 @@ class UserRepository implements IUserRepository {
     try {
       final response = await MyHttpClient.get(
         url: '/user',
-        headers: MyHttpClient.getHeaders(),
+        headers: MyHttpClient.getHeaders(token: token),
       );
       if (response.statusCode == 200) {
         return UserModel.fromJson(response.body);
