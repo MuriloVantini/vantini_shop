@@ -56,10 +56,10 @@ class UserModel {
       id: map['id'] as int,
       email: map['email'] as String,
       name: map['name'] as String,
-      emailVerifiedAt: map['emailVerifiedAt'] != null ? map['emailVerifiedAt'] as String : null,
-      createdAt: map['createdAt'] as String,
-      updatedAt: map['updatedAt'] as String,
-      isAdmin: map['isAdmin'] as bool,
+      emailVerifiedAt: map['email_verified_at'] != null ? map['email_verified_at'] as String : null,
+      createdAt: map['created_at'] as String,
+      updatedAt: map['updated_at'] as String,
+      isAdmin: map['is_admin'] as bool,
     );
   }
 

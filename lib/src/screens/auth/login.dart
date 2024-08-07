@@ -1,7 +1,10 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:vantini_shop/api/repositories/auth_repository.dart';
+import 'package:vantini_shop/api/repositories/user_repository.dart';
 import 'package:vantini_shop/api/stores/auth_store.dart';
+import 'package:vantini_shop/api/stores/user_store.dart';
+import 'package:vantini_shop/src/screens/home_page.dart';
 import 'package:vantini_shop/src/settings/settings_view.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,6 +19,7 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   AuthStore authStore = AuthStore(repository: AuthRepository());
+  UserStore userStore = UserStore(repository: UserRepository());
 
   @override
   void initState() {
@@ -48,7 +52,14 @@ class _LoginPageState extends State<LoginPage> {
         child: Form(
           key: formKey,
           child: AnimatedBuilder(
-            animation: Listenable.merge([authStore.stateToLogin, authStore.isLoading, authStore.erro]),
+            animation: Listenable.merge([
+              authStore.stateToLogin,
+              authStore.isLoading,
+              authStore.erro,
+              userStore.state,
+              userStore.isLoading,
+              userStore.erro,
+            ]),
             builder: (context, child) {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,7 +70,7 @@ class _LoginPageState extends State<LoginPage> {
                   //Email
                   TextFormField(
                     controller: emailController,
-                    decoration: const InputDecoration(labelText: 'Email'),
+                    decoration: const InputDecoration(labelText: 'E-mail'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Informe um email.';
@@ -124,7 +135,11 @@ class _LoginPageState extends State<LoginPage> {
                                   authStore.erro.value = '';
                                 }
                                 if (authStore.stateToLogin.value.isNotEmpty) {
-                                  Navigator.popAndPushNamed(context, '/home');
+                                  userStore.showUser(authStore.stateToLogin.value).whenComplete(() {
+                                    if (userStore.state.value != null) {
+                                      Navigator.pop(context, MaterialPageRoute(builder: (context) => HomePage(user: userStore.state.value!)));
+                                    }
+                                  });
                                 }
                               });
                             }
