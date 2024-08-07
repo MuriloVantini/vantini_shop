@@ -83,6 +83,7 @@ class MyApp extends StatelessWidget {
               onError: Colors.white,
               surface: Colors.white,
               onSurface: Colors.black,
+              shadow: Color.fromARGB(255, 197, 197, 196)
             ),
             inputDecorationTheme: InputDecorationTheme(
               prefixIconColor: lightPrimary.withGreen(150),
@@ -129,6 +130,7 @@ class MyApp extends StatelessWidget {
               onError: Colors.white,
               surface: Color.fromARGB(255, 20, 20, 20),
               onSurface: Color.fromARGB(255, 225, 219, 219),
+              shadow: Color.fromARGB(255, 83, 82, 80)
             ),
             inputDecorationTheme: InputDecorationTheme(
               prefixIconColor: darkPrimary.withGreen(96),
