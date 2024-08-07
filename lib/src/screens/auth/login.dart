@@ -129,15 +129,15 @@ class _LoginPageState extends State<LoginPage> {
                             if (formKey.currentState!.validate()) {
                               await authStore.login(
                                 {"email": emailController.text.trim(), "password": passwordController.text.trim()},
-                              ).whenComplete(() {
+                              ).whenComplete(() async {
                                 if (authStore.erro.value.isNotEmpty) {
                                   formKey.currentState!.validate();
                                   authStore.erro.value = '';
                                 }
                                 if (authStore.stateToLogin.value.isNotEmpty) {
-                                  userStore.showUser(authStore.stateToLogin.value).whenComplete(() {
+                                  await userStore.showUser(authStore.stateToLogin.value).whenComplete(() {
                                     if (userStore.state.value != null) {
-                                      Navigator.pop(context, MaterialPageRoute(builder: (context) => HomePage(user: userStore.state.value!)));
+                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomePage(user: userStore.state.value!)));
                                     }
                                   });
                                 }
